@@ -134,6 +134,8 @@ export default function BoardBackground({ size = 300, theme = defaultTheme, show
     <View style={containerStyle}>
       <View style={boardStyle}>
         <FlatList
+          showsVerticalScrollIndicator={false}
+          showsHorizontalScrollIndicator={false}
           scrollEnabled={false}
           data={flatBoard}
           renderItem={renderItem}
