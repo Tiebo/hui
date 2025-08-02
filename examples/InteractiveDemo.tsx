@@ -1,9 +1,7 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
-import BoardBackground from '../src/components/chess-kit/board/Board';
-import PiecesBoard from '../src/components/chess-kit/chessboard/PiecesBoard';
+import { StyleSheet, View } from 'react-native';
 import { useState } from 'react';
 
-import bK from '../assets/chesspieces/figmachess/figma_chess_bk.png'
+import InteractiveBoard from '../src/components/chess-kit/chessboard/InteractiveBoard';
 
 export default function InteractiveDemo() {
   const theme: BoardTheme = {
@@ -20,22 +18,7 @@ export default function InteractiveDemo() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Interactive Chess Demo</Text>
-      <Text style={styles.subtitle}>Switch between board and pieces view</Text>
-      
-      {showBoard ?
-        <BoardBackground size={size} theme={theme} showCoordinates={showCoordinates} coordinatePosition={coordinatePosition} flipped={flipped} />
-        :
-        <PiecesBoard size={size} theme={theme} fen="8/ppppRppp/8/8/8/8/PPPPPkPP/RNBQKBNR w KQkq - 0 1" piecesImage={{
-          bk: bK,
-        }} showCoordinates={showCoordinates} coordinatePosition={coordinatePosition} flipped={flipped} />}
-
-      <View style={styles.controls}>
-        <Button title={showBoard ? "Show Pieces" : "Show Board"} onPress={() => setShowBoard(!showBoard)} />
-        <Button title="Toggle Coordinates" onPress={() => setShowCoordinates(!showCoordinates)} />
-        <Button title={`Position: ${coordinatePosition}`} onPress={() => setCoordinatePosition(coordinatePosition === 'outside' ? 'inside' : 'outside')} />
-        <Button title={`Board: ${flipped ? 'Flipped' : 'Normal'}`} onPress={() => setFlipped(!flipped)} />
-      </View>
+      <InteractiveBoard />
     </View>
   );
 }
